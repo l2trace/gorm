@@ -79,10 +79,10 @@ func indirect(reflectValue reflect.Value) reflect.Value {
 func toQueryMarks(primaryValues [][]interface{}) string {
 	var results []string
 
-	for _, primaryValue := range primaryValues {
+	for i, primaryValue := range primaryValues {
 		var marks []string
 		for range primaryValue {
-			marks = append(marks, "?")
+			marks = append(marks, fmt.Sprintf(":%d", i))
 		}
 
 		if len(marks) > 1 {
